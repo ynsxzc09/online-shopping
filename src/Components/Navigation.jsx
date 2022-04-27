@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Components/Navigation.css';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import shopping from '../Assets/shopping gurl.png'
-import './Home.css'
 import styled from 'styled-components';
 
 function Home(props) {

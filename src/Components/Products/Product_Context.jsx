@@ -16,6 +16,6 @@ function ProductsProvider({children}) {
 } 
 
 const useProductContext = () => {
- return useContext(ProductContext); }
+return useContext(ProductContext); }
 
 export {useProductContext, ProductsProvider }

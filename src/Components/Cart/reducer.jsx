@@ -1,7 +1,7 @@
 import {ADD_TO_CART,
 SET_QUANTITY,
 TOTAL_AMOUNT,
-CLEAR_CART,} from '../utils/action_type.js'
+CLEAR_CART, REMOVE_ITEM, LOAD_DATA, UPDATE_FILTER, UPDATE_FILTERED_ITEMS} from '../utils/action_type.js'
 
 function reducer(state, {type, payload}) {
     switch (type) {
@@ -32,10 +32,32 @@ function reducer(state, {type, payload}) {
         return { ...state, cart: tempCart };
 
     case TOTAL_AMOUNT:
-    return { ...state };
+        const finalTotal = state.cart.reduce((total, {unitPrice, qty}) => {
+            const subTotal = unitPrice * qty;
+            return {...total, amount: total.amount += subTotal, quantity: total.quantity += qty}
+        }, {amount: 0, quantity: 0})
+    return { ...state, totalAmount: finalTotal.amount, totalQuantity: finalTotal.quantity };
 
     case CLEAR_CART:
     return { ...state, cart: [] };
+
+    case REMOVE_ITEM:
+        const cartMod = state.cart.filter((item) => item.id !== payload.id)
+        return {...state, cart: cartMod };
+    
+    case LOAD_DATA:
+        return {...state, allItems: payload.slice()}
+
+    case UPDATE_FILTER:
+        return {...state, filter: {...state.filter, category: payload}}
+
+    case UPDATE_FILTERED_ITEMS:
+        const currentCategory = state.filter.category
+        if(currentCategory === "All"){
+            return {...state, filteredItem: state.allItems}
+        } else { 
+            return {...state, filteredItem: payload.filter((item) => item.category === currentCategory)}
+        }
 
     default:
 break;

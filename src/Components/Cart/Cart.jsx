@@ -4,7 +4,7 @@ import { useCartContext } from './Cart_Context';
 import styled from 'styled-components';
 
 function Cart(props) {
-    const { cart, setQty, totalAmount, clearCart } = useCartContext();
+    const { cart, setQty, totalAmount, clearCart, removeItem, totalQuantity } = useCartContext();
 
     if (!cart.length) {
         return <EmptyWrapper>
@@ -16,9 +16,10 @@ function Cart(props) {
         </EmptyWrapper>
     }
     return <CartWrapper>
+        <aside className='title-container'>
             <h1 className='cart-title'>My Cart</h1>
+        </aside>
         {cart.map(({imageUrl, id, qty, productName, unitPrice}) => {
-        const total= qty*unitPrice;
         return <>
             <aside className='container' key={id}>
                 <aside className='item-list'>
@@ -38,8 +39,9 @@ function Cart(props) {
                                 const {name} = e.target;
                                 setQty(name, id);
                             }} className='qty-btn1'>+</button>
+                            <button className='qty-btn1' onClick={() => removeItem(id)} >Remove</button>
                             <br/>
-                            <span><strong>TOTAL:</strong> { formatPrice(total) }</span>
+                            <span><strong>TOTAL:</strong> { formatPrice(qty*unitPrice) }</span>
                         </aside>
                     </aside>
                 </aside>
@@ -47,9 +49,8 @@ function Cart(props) {
         </>
         }).reverse()}
         <hr/>
-        <h5 className='total'>
-            TOTAL AMOUNT: <br /> {formatPrice(totalAmount)}
-        </h5>
+        <h5 className='total'>TOTAL AMOUNT: <br /> {formatPrice(totalAmount)}</h5>
+        <h5 className='total'>TOTAL ITEMS: <br /> {totalQuantity} </h5>
         <aside className='btn-con'>
         <button onClick={clearCart} className="cart-btn">
             Clear Cart
@@ -60,19 +61,15 @@ function Cart(props) {
 }
 
 const CartWrapper = styled.aside`
-width: 22vw;
 background-color: #D6D2C4;
-
+.title-container {
+border-bottom: 3px solid black;
+}
 .container {
 display: flex;
 }
-hr {
-margin-top: 5px;
-height:3px;
-background-color: black;
-}
 .item-list{ 
-width: 21vw;
+width: 20.6vw;
 margin: 5px;
 display: inline-flex;
 background-color: white;
@@ -124,22 +121,29 @@ padding: 5px;
     margin: 7px;
 }
 @media screen and (min-width: 1400px) {
+.container {
+    width: 24vw
+}
 .cart-btn{
 margin: 1rem;
-padding: 5px 8rem;
+padding: 5px 4rem;
 }
 }
 `     
 const EmptyWrapper = styled.section`
-background-color: #FFF5EA;
 width: 22vw;
-
+background-color: #D6D2C4;
 .empty {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     border-bottom: 2px solid black;
+}
+@media screen and (min-width: 1400px) {
+.container {
+    width: 25vw
+} 
 }
 `
 

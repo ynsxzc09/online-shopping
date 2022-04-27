@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import { ProductsProvider } from './Components/Products/Product_Context';
 import { CartProvider } from './Components/Cart/Cart_Context';
+import { FilterProvider } from './Components/Category/filterContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
+  <FilterProvider>
   <CartProvider>
     <ProductsProvider>
       <App />
     </ProductsProvider>
   </CartProvider>
+  </FilterProvider>
   </React.StrictMode>
 );
 

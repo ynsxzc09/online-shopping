@@ -1,18 +1,18 @@
 import React from 'react';
-import '../Products/ProductList.css'
 import {useProductContext} from '../Products/Product_Context'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import { formatPrice } from '../utils/helper';
 import {useCartContext} from '../Cart/Cart_Context'
+import { useCategoryContext } from '../Category/filterContext';
 
 
 function ProductList(props) {
-    const {items} = useProductContext();
+    const { filteredItem } = useCategoryContext();
     const {addItem} = useCartContext();
     return <ProductCard>
     <div className='container-card'>
-    {items.map(({imageUrl, id, description, productName, unitPrice}) => {
+    {filteredItem.map(({imageUrl, id, description, productName, unitPrice}) => {
         return (
             <div className='item-card' key={id}>
             <Link to={`/products/${id}`}>
@@ -37,9 +37,7 @@ function ProductList(props) {
 
 const ProductCard = styled.div`
 .container-card {
-width: 60vw;
-margin: 10px;
-/* background-color: #FFF5EA; */
+width: 61.5vw;
 padding: 30px;
 display: grid;
 gap: 20px;
