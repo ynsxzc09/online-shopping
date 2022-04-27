@@ -1,3 +1,10 @@
+npm start, then the website will execute on localhost:3000,
+
+Home is just a front page
+
+Product Page this is where you will see the Filter category, product list and also the cart bag, the item that you will add to cart will automatically go to you local storage so that even if you refresh your website the infomartion is still there, Clear will delete all and also the qty of each product you'll see a button, click the category to see all the filter.
+
+<!-----------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -67,4 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
