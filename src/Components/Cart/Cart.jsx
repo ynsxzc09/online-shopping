@@ -16,20 +16,20 @@ function Cart(props) {
         </EmptyWrapper>
     }
     return <CartWrapper>
-        <aside className='title-container'>
+        <div className='title-container'>
             <h1 className='cart-title'>My Cart</h1>
-        </aside>
+        </div>
         {cart.map(({imageUrl, id, qty, productName, unitPrice}) => {
         return <>
             <aside className='container' key={id}>
-                <aside className='item-list'>
-                    <aside className='imgContainer'>
+                <div className='item-list'>
+                    <div className='imgContainer'>
                         <img src={imageUrl} alt={productName} className='image'/>
-                    </aside>
-                    <aside className='qty'>
+                    </div>
+                    <div className='qty'>
                         <h5>{productName}</h5>
                         <h6>{formatPrice(unitPrice)}</h6>
-                        <aside className='qty-btn'>
+                        <div className='qty-btn'>
                             <button name="decrease" onClick={(e) => {
                                 const {name} = e.target;
                                 setQty(name, id);
@@ -42,16 +42,16 @@ function Cart(props) {
                             <button className='qty-btn1' onClick={() => removeItem(id)} >Remove</button>
                             <br/>
                             <span><strong>TOTAL:</strong> { formatPrice(qty*unitPrice) }</span>
-                        </aside>
-                    </aside>
-                </aside>
+                        </div>
+                    </div>
+                </div>
             </aside>
         </>
         }).reverse()}
         <hr/>
         <h5 className='total'>TOTAL AMOUNT: <br /> {formatPrice(totalAmount)}</h5>
         <h5 className='total'>TOTAL ITEMS: <br /> {totalQuantity} </h5>
-        <aside className='btn-con'>
+        <div className='btn-con'>
         <button onClick={clearCart} className="cart-btn">
             Clear Cart
         </button>
@@ -61,7 +61,7 @@ function Cart(props) {
                 setOpenModal(false)
             }, 1500)
         }}>Check Out</button>
-        </aside>
+        </div>
     </CartWrapper>
 }
 
