@@ -32,7 +32,7 @@ function SingleItem(props) {
 
 const Wrapper = styled.div`
 .btn-product {
-    margin: 10px;
+    margin: 2rem 10px;
     padding: 10px;
     background-color: #968C83;
     color: white;
@@ -41,17 +41,17 @@ const Wrapper = styled.div`
 .details-container{
 background-color: #D6D2C4;
 border: 2px solid #968C83;
-margin: 90px;
+margin: 11rem;
 display: flex;
 justify-content: center;
 align-items: center;
-padding: 30px
+padding: 20px
 }
 .img-contain {
 display: flex;
 overflow: hidden;
-height: 230px;
-width: 30rem;
+height: 30rem;
+width: 40rem;
 }
 img {
     width: 100%;
@@ -61,6 +61,9 @@ img {
 .info-container {
     margin: 10px;
     padding: 20px;
+}
+.info-container h4 {
+    font-size: 2rem;
 }
 `
 
