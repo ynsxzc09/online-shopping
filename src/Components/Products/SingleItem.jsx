@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCartContext } from '../Cart/Cart_Context';
 import {useProductContext} from './Product_Context'
 import {formatPrice} from '../utils/helper.js'
 import styled from 'styled-components'
 
 function SingleItem(props) {
+    const navigate = useNavigate();
     const {items} = useProductContext();
     const { addItem } = useCartContext();
     const {id} =useParams();
@@ -21,8 +22,8 @@ function SingleItem(props) {
                 <h4>{productName}</h4>
                 <p>{formatPrice(unitPrice)}</p>
                 <p>{description}</p>
-                <a href="/products"><button onClick={() => { addItem({imageUrl, id, description, productName, unitPrice}) }} className='btn-product'>Add to Cart</button>
-                </a>
+                <button onClick={() => { addItem({imageUrl, id, description, productName, unitPrice}) 
+                navigate("/products")}} className='btn-product'>Add to Cart</button>
                 </div>
             </div>
         </>
