@@ -1,7 +1,7 @@
 import {ADD_TO_CART,
 SET_QUANTITY,
 TOTAL_AMOUNT,
-CLEAR_CART, REMOVE_ITEM, LOAD_DATA, UPDATE_FILTER, UPDATE_FILTERED_ITEMS, UPDATE_SEARCH, SORT_VALUE} from '../utils/action_type.js'
+CLEAR_CART, REMOVE_ITEM, LOAD_DATA, UPDATE_FILTER, UPDATE_FILTERED_ITEMS, UPDATE_SEARCH, SORT_VALUE, SHOW_MODAL} from '../utils/action_type.js'
 
 function reducer(state, {type, payload}) {
     switch (type) {
@@ -74,7 +74,6 @@ function reducer(state, {type, payload}) {
         return {...state, filteredItem: filterSearch}
     case SORT_VALUE: 
     const  filterPrice = state.filter.price
-    console.log(state.filter.price)
     if (filterPrice === "highest") {
         const sortByPrice = state.filteredItem.sort((b, a) => {
         return a.unitPrice - b.unitPrice
@@ -84,6 +83,10 @@ function reducer(state, {type, payload}) {
     return {...state, filteredItem: state.filteredItem.sort((a, b) => {
         return a.unitPrice - b.unitPrice
         }) }
+
+    case SHOW_MODAL:
+    return {...state, showModal: payload}
+
     default:
 break;
 }

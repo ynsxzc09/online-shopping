@@ -11,7 +11,7 @@ function FilterContext(props) {
         <CategoryWrapper>
         <div>
         <h5>Category</h5>
-        <input type="text" name="search" value={filter.search} onChange={(e) => {
+        <input type="text" name="search" value={filter.search} placeholder="Search" onChange={(e) => {
             const {name, value} = e.target
             updateFilter(name, value)}} />
         {filterItem.map((category, id) =>{
@@ -51,8 +51,10 @@ background-color: #D6D2C4;
 cursor: pointer;
 }
 input, select {
-margin: 10px;
+margin: 10px 30px;
+padding: 5px
 }
+
 `
 
 

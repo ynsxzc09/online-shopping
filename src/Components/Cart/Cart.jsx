@@ -4,7 +4,7 @@ import { useCartContext } from './Cart_Context';
 import styled from 'styled-components';
 
 function Cart(props) {
-    const { cart, setQty, totalAmount, clearCart, removeItem, totalQuantity } = useCartContext();
+    const { cart, setQty, totalAmount, clearCart, removeItem, totalQuantity, setOpenModal } = useCartContext();
 
     if (!cart.length) {
         return <EmptyWrapper>
@@ -55,7 +55,12 @@ function Cart(props) {
         <button onClick={clearCart} className="cart-btn">
             Clear Cart
         </button>
-        <button className='cart-btn'>Check Out</button>
+        <button className='cart-btn' onClick={() => {
+            setOpenModal(true)
+            setTimeout(() => {
+                setOpenModal(false)
+            }, 1500)
+        }}>Check Out</button>
         </aside>
     </CartWrapper>
 }
@@ -123,7 +128,7 @@ padding: 5px;
 }
 @media screen and (min-width: 1400px) {
 .container {
-    width: 25vw;
+    width: 22.4vw;
 }
 .cart-btn{
 margin: 1rem;
