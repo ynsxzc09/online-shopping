@@ -20,7 +20,6 @@ const MainProd = styled.aside`
 .prod-container{
     border-left: 2px;
     display: inline-flex;
-    background-color: #FFF5EA;
 }
 `
 

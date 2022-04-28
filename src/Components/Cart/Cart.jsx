@@ -62,6 +62,7 @@ function Cart(props) {
 
 const CartWrapper = styled.aside`
 background-color: #D6D2C4;
+border-left: 2px solid black;
 .title-container {
 border-bottom: 3px solid black;
 }
@@ -69,7 +70,7 @@ border-bottom: 3px solid black;
 display: flex;
 }
 .item-list{ 
-width: 20.6vw;
+width: 21vw;
 margin: 5px;
 display: inline-flex;
 background-color: white;
@@ -122,7 +123,7 @@ padding: 5px;
 }
 @media screen and (min-width: 1400px) {
 .container {
-    width: 24vw
+    width: 25vw;
 }
 .cart-btn{
 margin: 1rem;
@@ -131,20 +132,18 @@ padding: 5px 4rem;
 }
 `     
 const EmptyWrapper = styled.section`
-width: 22vw;
 background-color: #D6D2C4;
-.empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+width: 22.5vw;
+border-left: 2px solid black;
+header {
     border-bottom: 2px solid black;
+    /* width: 22vw; */
 }
-@media screen and (min-width: 1400px) {
-.container {
-    width: 25vw
-} 
+.empty {
+    text-align: center;
+    font-size: 2rem;
 }
+
 `
 
 export default Cart;

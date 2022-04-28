@@ -37,10 +37,9 @@ function ProductList(props) {
 
 const ProductCard = styled.div`
 .container-card {
-width: 61.5vw;
+width: 61vw;
 padding: 30px;
 display: grid;
-gap: 20px;
 grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
 }
 .item-card {
@@ -74,6 +73,11 @@ grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
 .btn-product:hover {
     background-color: #F7DAD9;
     color: black;
+}
+@media screen and (min-width: 1400px){
+.container-card{
+    width: 61.5vw ;
+}
 }
 `
 

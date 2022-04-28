@@ -1,7 +1,7 @@
 import {ADD_TO_CART,
 SET_QUANTITY,
 TOTAL_AMOUNT,
-CLEAR_CART, REMOVE_ITEM, LOAD_DATA, UPDATE_FILTER, UPDATE_FILTERED_ITEMS} from '../utils/action_type.js'
+CLEAR_CART, REMOVE_ITEM, LOAD_DATA, UPDATE_FILTER, UPDATE_FILTERED_ITEMS, UPDATE_SEARCH, SORT_VALUE} from '../utils/action_type.js'
 
 function reducer(state, {type, payload}) {
     switch (type) {
@@ -49,16 +49,41 @@ function reducer(state, {type, payload}) {
         return {...state, allItems: payload.slice()}
 
     case UPDATE_FILTER:
-        return {...state, filter: {...state.filter, category: payload}}
+        const {name, value, } = payload;
+        if (name === 'category') {
+            return {...state, filter: {...state.filter, category: value.toLowerCase() }}
+        } if (name === 'search'){
+            return {...state, filter: {...state.filter, search : value.toLowerCase()} }
+        } if (name === 'price') {
+            return {...state, filter: {...state.filter, price: value}}
+        }
+        break;
 
     case UPDATE_FILTERED_ITEMS:
         const currentCategory = state.filter.category
-        if(currentCategory === "All"){
+        if(currentCategory === "all"){
             return {...state, filteredItem: state.allItems}
         } else { 
             return {...state, filteredItem: payload.filter((item) => item.category === currentCategory)}
         }
-
+    case UPDATE_SEARCH: 
+        const searchValue = state.filter.search
+        const filterSearch = state.filteredItem.filter(({productName}) => {
+        return productName.toLowerCase().startsWith(searchValue)
+        })
+        return {...state, filteredItem: filterSearch}
+    case SORT_VALUE: 
+    const  filterPrice = state.filter.price
+    console.log(state.filter.price)
+    if (filterPrice === "highest") {
+        const sortByPrice = state.filteredItem.sort((b, a) => {
+        return a.unitPrice - b.unitPrice
+        })
+        return {...state, filteredItem: sortByPrice}
+    }
+    return {...state, filteredItem: state.filteredItem.sort((a, b) => {
+        return a.unitPrice - b.unitPrice
+        }) }
     default:
 break;
 }
